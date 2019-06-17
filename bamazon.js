@@ -50,7 +50,7 @@ function getItem(){
                         message: 'How many would you like?'
                     }
                 ]).then(function(quantities){
-                    if (quantities.quantity < itemInfo.quantity){
+                    if (quantities.quantity <= itemInfo.quantity){
                         console.log('enough in stock');
                         let newQuantity = itemInfo.quantity - quantities.quantity;
                         connection.query("UPDATE products SET stock_quantity = ? WHERE item_id = ?", [newQuantity, answers.id], function(err, res){
@@ -62,10 +62,16 @@ function getItem(){
                         }, 3000); 
                     } else {
                         console.log('not enough in stock');
+                        setTimeout(function(){
+                            showTable();
+                        }, 2000);
                     }
                 });
             } else {
-                console.log('item not in stock');
+                console.log('Sorry, item not in stock');
+                setTimeout(function(){
+                    showTable();
+                }, 2000);
             }
         });
     })
@@ -92,7 +98,7 @@ function initProgrum(){
         switch(answers.id){
             case "exit":
                 connection.end();
-                return console.log("Have a nice deezy");
+                return console.log("Have a nice dayy, okay byeeee");
             case "buy":
                 getItem();
                 break;
