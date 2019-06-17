@@ -41,8 +41,9 @@ function getItem(){
     ]).then(function(answers){
         connection.query("SELECT * FROM products WHERE item_id = ?", [answers.id], function(err, response){
             showProducts(response);
-            itemInfo = inventoryInfo(response[0]);
-            if (itemInfo.isInStock){
+            let item = response[0];
+            let isInStock = (item.stock_quantity > 0);
+            if (isInStock){
                 inquirer.prompt([
                     {
                         type: 'message',
@@ -50,12 +51,12 @@ function getItem(){
                         message: 'How many would you like?'
                     }
                 ]).then(function(quantities){
-                    if (quantities.quantity <= itemInfo.quantity){
+                    if (quantities.quantity <= item.stock_quantity){
                         console.log('enough in stock');
-                        let newQuantity = itemInfo.quantity - quantities.quantity;
+                        let newQuantity = item.stock_quantity - quantities.quantity;
                         connection.query("UPDATE products SET stock_quantity = ? WHERE item_id = ?", [newQuantity, answers.id], function(err, res){
                             if (err) throw err;
-                            console.log(`Sold! Enjoy ${quantities.quantity} of the ${response[0].product_name}.`);
+                            console.log(`Sold! That'll be $${item.price * quantities.quantity}`); console.log(`Enjoy ${quantities.quantity} of the ${response[0].product_name}.`);
                         });
                         setTimeout(function(){
                             showTable();

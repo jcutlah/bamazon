@@ -16,5 +16,7 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
    * This means updating the SQL database to reflect the remaining quantity.
    * Once the update goes through, show the customer the total cost of their purchase.
 
-
+#### Full Preview:
 ![Recording](assets/images/recording.gif)
+#### Screenshot of SQL Table:
+![Recording](assets/images/mySqlTable.png)
