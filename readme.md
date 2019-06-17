@@ -1,9 +1,9 @@
 # Bamazon
 ## A simulated digital marketplace
 
-In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. 
+This app is an Amazon-like storefront that uses the MySQL skills learned in the SQL unit of the UNH Coding Bootcamp. The app takes in orders from customers and deplete stock from the store's inventory. 
 
-1. The app should then prompt users with two messages.
+1. The app then prompt users with two messages.
 
    * The first should ask them the ID of the product they would like to buy.
    * The second message should ask how many units of the product they would like to buy.
@@ -20,3 +20,8 @@ In this activity, you'll be creating an Amazon-like storefront with the MySQL sk
 ![Recording](assets/images/recording.gif)
 #### Screenshot of SQL Table:
 ![Recording](assets/images/mySqlTable.png)
+
+This app uses the following Node modules:
+
+   * [inquirer](https://www.npmjs.com/package/inquirer)
+   * [mysql](https://www.npmjs.com/package/mysql)
